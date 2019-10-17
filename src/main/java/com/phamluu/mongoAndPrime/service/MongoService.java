@@ -17,5 +17,6 @@ public interface MongoService {
 	public List<Howto> retrieveRecords(UyenMongoCollection_Table uyenMongoCollection_Table);
 	public void initTestData();
 	public void deleteDocument(Integer howtoID);
+	public void updateHowtoDocument(Integer id);
 
 }

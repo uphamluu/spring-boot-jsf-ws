@@ -121,6 +121,12 @@ public class MongoPM implements Serializable {
 		mongoservice.deleteDocument(howtoID);
 	}
 	
+	public void updateDocument(Integer howtoID) {
+		FacesMessage msg = new FacesMessage("Deleted HOW_TO with ID:", "Deleted HOW_TO with ID:" + howtoID);
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+		mongoservice.updateHowtoDocument(howtoID);
+	}
+	
 	
 
 //	private void setCollections(List<MongoCollection> collections) {

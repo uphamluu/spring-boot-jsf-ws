@@ -1,7 +1,8 @@
-package com.phamluu;  
+package com.phamluu.ws;  
   
  
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,6 +20,11 @@ public class HowtoWS {
 		
 		mongoservice.addHowtoDocument(); 
 
+	}
+	
+	@RequestMapping("/updateHowtoDocument/{id}")
+	public void updateHowtoDocument(@PathVariable Integer id){
+		mongoservice.updateHowtoDocument(id); 
 	}
 
 
