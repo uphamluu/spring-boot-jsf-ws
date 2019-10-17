@@ -18,8 +18,8 @@
         <relativePath />
     </parent>   
 
-	<groupId>de.igormukhin.samples</groupId>
-	<artifactId>spring-boot-org.acme.sample-jsf</artifactId>
+	<groupId>com.phamluu.training</groupId>
+	<artifactId>spring-boot-jsf-ws-mongo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
     
 	<packaging>war</packaging>
