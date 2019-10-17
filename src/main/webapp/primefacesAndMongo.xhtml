@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:p="http://primefaces.org/ui"
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+  >
+  
+<!-- call http://localhost:8080/primefacesAndMongo.xhtml -->
+<h:head>
+  <title>PrimeFaces Hello World Example</title>
+</h:head>
+
+<h:body>
+ <h:form id="helloWorldForm">
+  <p:growl id="growl" life="2000" />
+  <p:commandButton value="Init Test Data" id="initTestData" update="collectionList" action="#{dtMongoPM.initTestData()}"
+   style="margin-right:20px;"
+   styleClass="ui-priority-primary"
+  />
+<!--  </h:form> -->
+<!--  <p:separator /> -->
+<!-- <p:separator /> -->
+ 
+<!--  <p:dataTable var="mongoDb" value="#{dtMongoPM.allDatabases}" id="dbList" > -->
+<!--    <f:facet name="header"> -->
+<!--         List of Databases -->
+<!--     </f:facet> -->
+<!--    <p:column headerText="Database Name"> -->
+<!--     <h:outputText value="#{mongoDb.name}" /> -->
+<!--    </p:column> -->
+
+<!--  </p:dataTable> -->
+<p:separator />
+<p:separator />
+<!-- <h:form id="AAAAA"> -->
+ <p:dataTable var="collection" value="#{dtMongoPM.collections}" style="width:500px" id="collectionList">
+   <f:facet name="header">
+        List of Collections
+    </f:facet>
+    <p:column headerText="Database Name" width="10%" 
+            sortBy="#{collection.dbName}" 
+            filterBy="#{collection.dbName}"  filterMatchMode="contains">
+        <h:outputText value="#{collection.dbName}" />
+   </p:column>
+   <p:column headerText="Collection (Table) Name" width="10%" 
+                sortBy="#{collection.collectionName_TableN}" 
+                filterBy="#{collection.collectionName_TableN}"  filterMatchMode="contains">
+    <h:outputText value="#{collection.collectionName_TableN}" />
+   </p:column>
+   <p:column style="width:32px;text-align: center">
+<!--      icon="pi pi-search" title="View" -->
+            <p:commandButton value="select" update=":form22:howtoList2"  rendered="#{dtMongoPM.isHOW_TO(collection)}">
+                <f:setPropertyActionListener  value="#{collection}" target="#{dtMongoPM.selectedCollection}" />
+                <f:actionListener binding="#{dtMongoPM.showRecords()}"/>
+                
+            </p:commandButton>
+        </p:column>
+
+ </p:dataTable>
+ 
+ 
+ 
+ 
+
+<p:separator />
+<p:separator />
+   <p:dataTable var="howto" value="#{dtMongoPM.howtos}" editable="true" 
+                   id="howtoList"
+                  >
+<!--        <f:facet name="header" > -->
+<!--                          <h:outputText value="How to List" /> -->
+<!--        </f:facet> -->
+                    
+<!--         <p:ajax event="rowEdit" listener="#{dtMongoPM.onRowEdit}" update=":helloWorldForm:msgs" /> -->
+<!--         <p:ajax event="rowEditCancel" listener="#{dtMongoPM.onRowCancel}" update=":helloWorldForm:msgs" /> -->
+                    
+<!--                      <p:column headerText="ID" width="5%"> -->
+<!--                       <h:outputText value="#{howto.id}" /> -->
+<!--                      </p:column> -->
+                     
+<!--            <p:column headerText="Title" width="20%"> -->
+<!--                <h:outputText value="#{howto.title}" /> -->
+<!--                <p:cellEditor> -->
+<!--                 <f:facet name="output"><h:outputText value="#{howto.title}" /></f:facet> -->
+<!--                 <f:facet name="input"> <p:inputText id="modelTitle" value="#{howto.title}" style="width:100%"/></f:facet> -->
+<!--                </p:cellEditor> -->
+                      
+<!--            </p:column> -->
+                     
+<!--                      <p:column headerText="Tags" width="20%"> -->
+<!--                       <h:outputText value="#{howto.tags}" /> -->
+<!--                      </p:column> -->
+                     
+<!--                      <p:column headerText="CONTENT"> -->
+<!--                       <h:outputText value="#{howto.content}" /> -->
+                      
+<!--                      </p:column> -->
+                     
+<!--                       <p:column style="width:35px"> -->
+<!--                        <p:rowEditor /> -->
+<!--                       </p:column> -->
+              
+                  </p:dataTable>
+      
+<!--     </p:panel> -->
+    </h:form>
+ 
+ 
+<!--       Uyen Exmple of  Popup Dialog -->
+<!--     <p:dialog header="Collection(Table) Detail" widgetVar="collectionDialog" modal="true" showEffect="fade"  -->
+<!--         hideEffect="fade"  -->
+<!--             resizable="true" -->
+<!--             width="900px" -->
+<!--             > -->
+<!--           <p:outputPanel id="collectionDetail" style="text-align:center;" > -->
+
+<!--                   <p:dataTable var="howto" value="#{dtMongoPM.howtos}" editable="true"  -->
+<!--                    id="howtoList" -->
+<!--                   > -->
+<!--                     <f:facet name="header" > -->
+<!--                          <h:outputText value="How to List" /> -->
+<!--                     </f:facet> -->
+                    
+<!--                      <p:column headerText="ID" width="5%"> -->
+<!--                       <h:outputText value="#{howto.id}" /> -->
+<!--                      </p:column> -->
+<!--                      <p:column headerText="Title" width="20%"> -->
+<!--                       <h:outputText value="#{howto.title}" /> -->
+<!--                      </p:column> -->
+                     
+<!--                      <p:column headerText="Tags" width="20%"> -->
+<!--                       <h:outputText value="#{howto.tags}" /> -->
+<!--                      </p:column> -->
+                     
+<!--                      <p:column headerText="CONTENT"> -->
+<!--                       <h:outputText value="#{howto.content}" /> -->
+                      
+<!--                      </p:column> -->
+                     
+<!--                       <p:column style="width:35px"> -->
+<!--                        <p:rowEditor /> -->
+<!--                       </p:column> -->
+              
+<!--                   </p:dataTable> -->
+<!--           </p:outputPanel> -->
+<!--       </p:dialog> -->
+
+<p:separator />
+<p:separator />
+
+<h:form id="form22">
+
+    <p:growl id="msgs22" showDetail="true"/>
+      <p:dataTable var="howto2" value="#{dtMongoPM.howtos}" editable="true" style="margin-bottom:20px"
+                   id="howtoList2"
+                  >
+ 
+<!--     <p:dataTable id="cars1" var="car" value="#{dtEditView.cars1}" editable="true" style="margin-bottom:20px"> -->
+        <f:facet name="header">
+            Row Editing
+        </f:facet>
+ 
+        <p:ajax event="rowEdit" listener="#{dtMongoPM.onRowEdit}" update=":form22:msgs22" />
+        <p:ajax event="rowEditCancel" listener="#{dtMongoPM.onRowCancel}" update=":form22:msgs22" />
+ 
+        <p:column headerText="Id" width="5%">
+            <p:cellEditor>
+                <f:facet name="output"><h:outputText value="#{howto2.id}" /></f:facet>
+                <f:facet name="input"><p:inputText id="modelInput" value="#{howto2.id}" style="width:100%"/></f:facet>
+            </p:cellEditor>
+        </p:column>
+        
+        <p:column headerText="internalID">
+<!--                 <f:facet name="output"> -->
+                   <h:outputText value="#{howto2.internalID}" />
+<!--                 </f:facet> -->
+        </p:column>
+        
+ 
+        <p:column headerText="TITLE">
+            <p:cellEditor>
+                <f:facet name="output"><h:outputText value="#{howto2.title}" /></f:facet>
+                <f:facet name="input"><p:inputText value="#{howto2.title}" style="width:100%" label="TITLE"/></f:facet>
+            </p:cellEditor>
+        </p:column>
+        
+         <p:column headerText="Tags" width="20%">
+         <p:cellEditor>
+                <f:facet name="output"><h:outputText value="#{howto2.tags}" /></f:facet>
+                <f:facet name="input"><p:inputText value="#{howto2.tags}" style="width:100%" label="TITLE"/></f:facet>
+            </p:cellEditor>
+         
+<!--                       <h:outputText value="#{howto.tags}" /> -->
+         </p:column>
+                     
+                     <p:column headerText="CONTENT">
+                      <h:outputText value="#{howto.content}" />
+                      
+                     </p:column>
+                     
+                     <p:column headerText="">
+                      <p:commandButton id="deletBtt" update=":form22:howtoList2 :form22:msgs22" value="Delete">
+                      <f:actionListener binding="#{dtMongoPM.deleteDocument(howto2.id)}"/>
+                      <f:actionListener binding="#{dtMongoPM.reload()}"/>
+                      </p:commandButton>
+                     </p:column>
+ 
+<!--         <p:column headerText="Brand"> -->
+<!--             <p:cellEditor> -->
+<!--                 <f:facet name="output"><h:outputText value="#{car.brand}" /></f:facet> -->
+<!--                 <f:facet name="input"> -->
+<!--                     <h:selectOneMenu value="#{car.brand}" style="width:100%"> -->
+<!--                         <f:selectItems value="#{dtEditView.brands}" var="man" itemLabel="#{man}" itemValue="#{man}" /> -->
+<!--                     </h:selectOneMenu> -->
+<!--                 </f:facet> -->
+<!--             </p:cellEditor> -->
+<!--         </p:column> -->
+ 
+<!--         <p:column headerText="Color"> -->
+<!--             <p:cellEditor> -->
+<!--                 <f:facet name="output"><h:outputText value="#{car.color}" /></f:facet> -->
+<!--                 <f:facet name="input"> -->
+<!--                     <h:selectOneMenu value="#{car.color}" style="width:100%"> -->
+<!--                         <f:selectItems value="#{dtEditView.colors}" var="color" itemLabel="#{color}" itemValue="#{color}" /> -->
+<!--                     </h:selectOneMenu> -->
+<!--                 </f:facet> -->
+<!--             </p:cellEditor> -->
+<!--         </p:column> -->
+ 
+        <p:column style="width:35px">
+            <p:rowEditor />
+        </p:column>
+    </p:dataTable>
+</h:form>
+ 
+</h:body>
+</html>

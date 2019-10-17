@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view contentType="text/html"
+	xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:ui="http://java.sun.com/jsf/facelets" 
+	xmlns:h="http://java.sun.com/jsf/html" 
+	xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+    xmlns:p="http://primefaces.org/ui">
+<html>
+
+<h:head>
+  
+  <!-- For Bootstrap responsive grid -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+  
+</h:head>
+
+<h:body>
+
+<h:form id="form">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <p:messages globalOnly="true" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <p:panel header="Form" styleClass="form-horizontal">
+          <div class="form-group">
+            <p:outputLabel value="Field value" for="field" styleClass="col-sm-3 control-label" />
+            <div class="col-sm-9">
+              <p:inputText id="field" value="#{formBean.field}" pt:placeholder="Input a value" required="true">
+                <f:validateLength minimum="2" />
+              </p:inputText>
+              <p:messages for="field" />
+            </div>
+          </div>
+        
+          <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-9">
+              <p:commandButton value="Submit" action="#{formController.submit}" ajax="false"
+                  icon="fa fa-save" />
+              <p:commandButton value="Reset (Ajax)" actionListener="#{formController.reset}" update="@form"
+                  icon="fa fa-trash" immediate="true" />
+              <p:button value="Go to home" outcome="/index" 
+                  icon="fa fa-home" />
+            </div>
+          </div>          
+          
+        </p:panel>
+      </div>
+      
+      <div class="col-md-6">
+        <p:panel header="Submitted values saved in view scope">
+          <p:dataList value="#{formBean.submittedValues}" var="value" type="ordered">
+            #{value}
+          </p:dataList>
+        </p:panel>
+      </div>
+      
+    </div>
+  </div>
+
+</h:form>
+</h:body>
+
+</html>
+</f:view>
