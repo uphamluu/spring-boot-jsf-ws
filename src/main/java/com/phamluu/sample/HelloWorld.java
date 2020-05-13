@@ -3,7 +3,10 @@ package com.phamluu.sample;
 
 import javax.faces.bean.ManagedBean;
 
+import org.springframework.stereotype.Component;
+
 @ManagedBean
+@Component("helloWorld")
 public class HelloWorld {
 
   private String firstName = "John";

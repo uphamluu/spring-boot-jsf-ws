@@ -24,11 +24,19 @@ import org.springframework.boot.context.embedded.tomcat.TomcatContextCustomizer;
 import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
 import org.springframework.boot.context.web.NonEmbeddedServletContainerFactory;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.phamluu.guru.springframework.autowiringdemo.Employee;
+import com.phamluu.guru.springframework.autowiringdemo.EmployeeBean;
 import com.phamluu.sample.jsf.FacesViewScope;
 import com.sun.faces.config.FacesInitializer;
 
@@ -41,7 +49,35 @@ import com.sun.faces.config.FacesInitializer;
 public class SpringBootFacesApplication extends SpringBootServletInitializer {
     
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(SpringBootFacesApplication.class, args);
+//        SpringApplication.run(SpringBootFacesApplication.class, args);
+        ConfigurableApplicationContext ctx = SpringApplication.run(SpringBootFacesApplication.class, args);
+        
+        
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		System.out.println("*** Example Using byName autowiring mode ***");
+		Employee emp = context.getBean("employeeByName", Employee.class);
+		emp.setEid(101);
+		emp.setEname("Spring Framework Guru");
+		emp.showEployeeDetails();
+
+		System.out.println("\n*** Example Using byType autowiring mode ***");
+		Employee emp1 = context.getBean("employeeByType", Employee.class);
+		emp1.setEid(102);
+		emp1.setEname("Spring Framework Guru");
+		emp1.showEployeeDetails();
+
+		System.out.println("\n*** Example Using constructor autowiring mode ***");
+		Employee emp2 = context.getBean("employeeConstructor", Employee.class);
+		emp2.setEid(103);
+		emp2.setEname("Spring Framework Guru");
+		emp2.showEployeeDetails();
+
+		System.out.println("\n*** Example Using @Autowire annotation on property ***");
+		EmployeeBean employeeBean = ctx.getBean(EmployeeBean.class);
+		employeeBean.setEid(104);
+		employeeBean.setEname("Spring Framework Guru");
+		employeeBean.showEployeeDetails();
+        
     }
 
     @Override
