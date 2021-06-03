@@ -34,7 +34,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         <tomcat.version>7.0.62</tomcat.version>
         
         <jsf-mojarra.version>2.2.11</jsf-mojarra.version>
-        <primefaces.version>5.2</primefaces.version>
+        <primefaces.version>6.0</primefaces.version>
 	</properties>
 	
 	<dependencies>
